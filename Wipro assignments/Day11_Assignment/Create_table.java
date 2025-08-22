@@ -7,15 +7,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.*;
 
-public class student {
+public class Create_table {
 public static void main(String[] args) throws ClassNotFoundException, SQLException {
-	String url="jdbc:mysql://localhost:3306/dbb";
+	String url="jdbc:mysql://localhost:3306/db";
 	String user="root";
 	String password="root";
 
 	String sql="Create table  Student(rollno int,name varchar(50),per int,email varchar(50))";
 	
-	String insertsql="insert into Student value(101,'Nasir',93,'nasirhussain@gmail.com'),(102,'Ramesh',96,'Ramesh@gmail.com'),(103,'suhas',92,'suhas@gmail.com'),(104,'Raghav',86,'raghav@gmail.com'),(105,'sharath',96,'sharath@gmail.com')";
+	String insertsql="insert into Student value(101,'Nasir',93,'nasirhussain@gmail.com'),(102,'Ramesh',97,'Ramesh@gmail.com'),(103,'suhas',92,'suhas@gmail.com'),(104,'Rama',86,'Rama@gmail.com'),(105,'sharath',96,'sharath@gmail.com')";
 	String updatesql="update Student set per=90 where rollno = 102";
 	
 	
@@ -25,19 +25,18 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 	Statement stmt=con.createStatement();
 	
 	
-	//create table
+	
 	stmt.executeUpdate(sql);//to change data in sql
 	System.out.println("Student table created");
 	
 	
-	//insert values
+	
 	int rowInserted=stmt.executeUpdate(insertsql);
 	if(rowInserted>0) {
 		System.out.println("new Student record inserted");
 	}
 	
 	
-	//update values
 	int updatedone=stmt.executeUpdate(updatesql);
 	if(updatedone>0) {
 		System.out.println("Update is done");
@@ -108,7 +107,7 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 		
 	}
 	
-	//same city
+	
 	System.out.println("\n");
 	String samecity="select * from Student where city ='hyd'";
 	ResultSet rs5 = stmt.executeQuery(samecity);
@@ -123,7 +122,7 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 		
 	}
 	
-	//modify column data type
+	
 	
 	String moddata="alter table Student modify column per float";
 	stmt.executeUpdate(moddata);
@@ -146,30 +145,30 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 		
 	}
 	
-	//rename
+
 	
 	String rename="rename table Student to Studentsss ";
 	stmt.executeUpdate(rename);
 	System.out.println("rename done sucessfully");
 	
-	//delete column
+	
 	String del="alter table Studentsss drop column city";
 	stmt.executeUpdate(del);
 	System.out.println("deleted sucessfully");
 	
-	//delete row
+	
 	
 	String deleteRow = "DELETE FROM Studentsss WHERE rollno = 102";
 	int rowsDeleted = stmt.executeUpdate(deleteRow);
 	System.out.println("Student with rollno 102 deleted successfully.");
 	
-	//truncate
+	
 	
 	String trunc="truncate table Studentsss";
 	stmt.executeUpdate(trunc);
 	System.out.println("all records deleted");
 	
-	//drop table
+
 	
 	String dropta="drop table Studentsss";
 	stmt.executeUpdate(dropta);
@@ -181,3 +180,5 @@ public static void main(String[] args) throws ClassNotFoundException, SQLExcepti
 	rs.close();
 }
 }
+	
+
